@@ -13,11 +13,26 @@
         <a href="main.html">Ürün Listesi</a>
         <a href="buy.html">Satın Alma</a>
     </nav>
+
+    <!-- Login Form -->
+    <form id="loginForm">
+        <h2>Giriş Yap</h2>
+        <label for="email">Email:</label>
+        <input type="email" id="email" placeholder="Emailinizi Girin" required><br>
+
+        <label for="password">Şifre:</label>
+        <input type="password" id="password" placeholder="Şifrenizi Girin" required><br>
+
+        <button type="submit">Giriş Yap</button>
+    </form>
+
+    <!-- Kullanıcı Profil Sayfası -->
     <div class="profile">
         <h1>Kullanıcı Profil Sayfası</h1>
 
-        <!-- Kullanıcı bilgilerini girecek alan -->
+        <!-- Profil Bilgilerini Düzenleme Alanı -->
         <form id="profileForm">
+            <h2>Profil Bilgilerini Güncelle</h2>
             <label for="name">Ad:</label>
             <input type="text" id="name" placeholder="Adınızı Girin" required><br>
             
@@ -33,7 +48,7 @@
             <button type="button" id="saveProfile">Kaydet</button>
         </form>
 
-        <!-- Kaydedilen bilgilerin görüntüleneceği alan -->
+        <!-- Kaydedilen Profil Bilgilerini Gösterme -->
         <div id="savedProfile">
             <h2>Kayıtlı Bilgiler:</h2>
             <p><strong>Ad:</strong> <span id="savedName">[Adınız]</span></p>
@@ -47,7 +62,7 @@
     <div class="purchased-products">
         <h2>Alınan Ürünler</h2>
         <div id="purchasedProductsContainer">
-            <!-- Alınan ürünler buy.js tarafından kaydedilir ve burada görüntülenir -->
+            <!-- Alınan ürünler burada listelenecek -->
         </div>
     </div>
 

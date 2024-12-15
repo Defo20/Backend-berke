@@ -13,8 +13,8 @@ document.addEventListener("DOMContentLoaded", () => {
     // Ürünleri backend'den al ve göster
     async function fetchProducts() {
         try {
-            const response = await fetch("http://127.0.0.1:5000/products", {
-                method: "GET",
+            const response = await fetch("http://127.0.0.1:5000/products/add", {
+                method: "POST",
                 headers: {
                     "Content-Type": "application/json",
                 },
@@ -92,7 +92,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // Ürünü Backend'e Gönderme
     async function saveProduct(product) {
         try {
-            const response = await fetch("http://127.0.0.1:5000/products", {
+            const response = await fetch("http://127.0.0.1:5000/products/buy", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

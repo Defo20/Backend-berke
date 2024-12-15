@@ -1,4 +1,8 @@
 document.addEventListener("DOMContentLoaded", () => {
+    // Login Formu için DOM Elemanları
+    const loginForm = document.getElementById("loginForm");
+
+    // Profil Güncelleme Elemanları
     const nameInput = document.getElementById("name");
     const emailInput = document.getElementById("email");
     const phoneInput = document.getElementById("phone");
@@ -10,67 +14,62 @@ document.addEventListener("DOMContentLoaded", () => {
     const savedPhone = document.getElementById("savedPhone");
     const savedPhoto = document.getElementById("savedPhoto");
 
+    // Giriş Yap Fonksiyonu
+    async function login(email, password) {
+        try {
+            const response = await fetch("http://127.0.0.1:5000/profile/login", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ email, password }),
+            });
+    
+            if (response.ok) {
+                const data = await response.json();
+                localStorage.setItem("accessToken", data.access_token); // Token'ı kaydet
+                console.log("Login başarılı, token kaydedildi:", data.access_token);
+            } else {
+                console.error("Login başarısız:", response.statusText);
+            }
+        } catch (error) {
+            console.error("Login sırasında hata oluştu:", error);
+        }
+    }
+    
 
-    // Kullanıcı bilgilerini backend'den getir ve sayfada göster
+    // Profil Bilgilerini Çekme Fonksiyonu
     async function fetchProfile() {
         try {
             const response = await fetch("http://127.0.0.1:5000/profile", {
                 method: "GET",
                 headers: {
-                    Authorization: `Bearer ${localStorage.getItem("accessToken")}` // JWT Token
-                }
+                    "Authorization": `Bearer ${localStorage.getItem("accessToken")}`, // JWT Token
+                },
             });
-
-            if (response.ok) {
-                const userData = await response.json();
-                savedName.textContent = userData.name || "[Adınız]";
-                savedEmail.textContent = userData.email || "[Email]";
-                savedPhone.textContent = userData.phone || "[Telefon]";
-
-                if (userData.photo) {
-                    savedPhoto.src = userData.photo;
-                    savedPhoto.style.display = "block";
-                } else {
-                    savedPhoto.style.display = "none";
-                }
-            } else {
-                console.error("Profil bilgileri alınamadı:", response.statusText);
+    
+            if (!response.ok) {
+                throw new Error("Profil bilgileri alınamadı.");
             }
+    
+            const userData = await response.json();
+            console.log("Profil Bilgileri:", userData);
+            return userData;
         } catch (error) {
-            console.error("Profil bilgileri alınırken bir hata oluştu:", error);
+            console.error("Hata:", error);
         }
     }
-
-    // Kullanıcı bilgilerini backend'e kaydet
-    saveButton.addEventListener("click", async () => {
-        const userData = {
-            name: nameInput.value,
-            email: emailInput.value,
-            phone: phoneInput.value,
-        };
-
-        if (profilePhotoInput.files[0]) {
-            const reader = new FileReader();
-            reader.onload = async function (e) {
-                userData.photo = e.target.result;
-
-                await saveProfile(userData); // Profil verilerini backend'e gönder
-            };
-            reader.readAsDataURL(profilePhotoInput.files[0]);
-        } else {
-            await saveProfile(userData);
-        }
-    });
-
+    
+    // Profil Güncelleme Fonksiyonu
     async function saveProfile(userData) {
         try {
             const response = await fetch("http://127.0.0.1:5000/profile/update", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
-                    Authorization: `Bearer ${localStorage.getItem("accessToken")}`
+                    Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
                 },
-                body: JSON.stringify(userData)
+                body: JSON.stringify(userData),
             });
 
             if (response.ok) {
@@ -84,14 +83,14 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    // Alınan ürünleri backend'den getir ve göster
+    // Satın Alınan Ürünleri Çekme Fonksiyonu
     async function fetchPurchasedProducts() {
         try {
-            const response = await fetch("http://127.0.0.1:5000/purchased-products", {
+            const response = await fetch("http://127.0.0.1:5000/profile/purchased-products", {
                 method: "GET",
                 headers: {
-                    Authorization: `Bearer ${localStorage.getItem("accessToken")}` // JWT Token
-                }
+                    Authorization: `Bearer ${localStorage.getItem("accessToken")}`, // JWT Token
+                },
             });
 
             const purchasedProductsContainer = document.getElementById("purchasedProductsContainer");
@@ -135,7 +134,35 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    // Sayfa yüklendiğinde kullanıcı bilgilerini ve satın alınan ürünleri göster
+    // Login Form Submit Olayı
+    loginForm.addEventListener("submit", (e) => {
+        e.preventDefault(); // Sayfanın yeniden yüklenmesini engelle
+        const email = document.getElementById("email").value;
+        const password = document.getElementById("password").value;
+        login(email, password); // Login fonksiyonunu çağır
+    });
+
+    // Profil Kaydet Butonu
+    saveButton.addEventListener("click", async () => {
+        const userData = {
+            name: nameInput.value,
+            email: emailInput.value,
+            phone: phoneInput.value,
+        };
+
+        if (profilePhotoInput.files[0]) {
+            const reader = new FileReader();
+            reader.onload = async function (e) {
+                userData.photo = e.target.result;
+                await saveProfile(userData); // Profil verilerini backend'e gönder
+            };
+            reader.readAsDataURL(profilePhotoInput.files[0]);
+        } else {
+            await saveProfile(userData);
+        }
+    });
+
+    // Sayfa Yüklendiğinde Profil ve Alınan Ürünleri Göster
     fetchProfile();
     fetchPurchasedProducts();
 });

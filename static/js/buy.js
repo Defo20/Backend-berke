@@ -2,8 +2,8 @@ document.addEventListener("DOMContentLoaded", () => {
     // Ürün detaylarını backend'den alma
     const productId = localStorage.getItem("selectedProductId"); // Ürün ID'sini localStorage'dan al
     if (productId) {
-        fetch(`http://127.0.0.1:5000/product/${productId}`)
-            .then((response) => response.json())
+        fetch("http://127.0.0.1:5000/products/list")
+        .then((response) => response.json())
             .then((data) => {
                 document.getElementById("product-image").src = data.photo || "default-image.jpg";
                 document.getElementById("product-name").textContent = data.name || "Ürün Adı";
@@ -42,7 +42,7 @@ fetch("http://127.0.0.1:5000/basket?user_id=1") // Kullanıcı ID'sine göre sep
 document.getElementById("add-to-basket").addEventListener("click", () => {
     const productId = localStorage.getItem("selectedProductId"); // Ürün ID'sini al
     if (productId) {
-        fetch("http://127.0.0.1:5000/basket", {
+        fetch("http://127.0.0.1:5000/basket/add", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
@@ -96,7 +96,7 @@ function updateBasketUI() {
             const product = basket[index];
 
             // Backend'den sepetten çıkarma işlemi
-            fetch(`http://127.0.0.1:5000/basket/${product.product_id}`, {
+            fetch(`http://127.0.0.1:5000/basket/delete/${product.product_id}`, {
                 method: "DELETE",
             })
                 .then(() => {

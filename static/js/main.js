@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // Backend'den ürünleri al ve ekrana yazdır
     async function fetchProducts() {
         try {
-            const response = await fetch("http://127.0.0.1:5000/products"); // Backend'deki ürün listeleme endpoint'i
+            const response = await fetch("http://127.0.0.1:5000/products/list"); // Backend'deki ürün listeleme endpoint'i
             const products = await response.json(); // Backend'den gelen ürünler
             localStorage.setItem("products", JSON.stringify(products)); // Ürünleri localStorage'a kaydet
             renderProducts(); // Ürünleri ekrana yazdır
