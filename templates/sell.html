@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ürün Satış Sayfası</title>
+    <link rel="stylesheet" href="../static/css/sell.css">
+    </head>
+<body>
+    <!-- Navbar -->
+    <nav>
+        <a href="profile.html">Profil</a>
+        <a href="sell.html">Satış Yap</a>
+        <a href="main.html">Ürün Listesi</a>
+        <a href="buy.html">Satın Alma</a>
+
+
+    </nav>
+
+    <!-- Satış Sayfası -->
+    <div class="sell-page">
+        <h1>Ürün Satış Sayfası</h1>
+
+        <!-- Ürün Ekleme Formu -->
+        <form id="productForm">
+            <label for="productName">Ürün Adı:</label>
+            <input type="text" id="productName" placeholder="Ürün Adını Girin" required><br>
+
+            <label for="brand">Marka:</label>
+            <input type="text" id="brand" placeholder="Markayı Girin" required><br>
+
+            <label for="defectType">Kusur Türü:</label>
+            <input type="text" id="defectType" placeholder="Kusur Türünü Girin"><br>
+
+            <label for="price">Fiyatlandırma (₺):</label>
+            <input type="number" id="price" placeholder="Ürün Fiyatını Girin" required><br>
+
+            <label for="discount">Kampanya (%) :</label>
+            <input type="number" id="discount" placeholder="İndirim Oranını Girin (Opsiyonel)"><br>
+
+            <label for="category">Kategori:</label>
+            <select id="category" required>
+                <option value="Şapka">Şapka</option>
+                <option value="Ceket">Ceket</option>
+                <option value="Kazak/Tişört">Kazak/Tişört</option>
+                <option value="Pantolon">Pantolon</option>
+                <option value="Ayakkabı">Ayakkabı</option>
+            </select><br>
+
+            <label for="productPhoto">Ürün Fotoğrafı:</label>
+            <input type="file" id="productPhoto" accept="image/*"><br><br>
+
+            <button type="submit" id="submitProduct">Ürünü Kaydet</button>
+        </form>
+
+        <!-- Eklenen Ürünlerin Görüntülenmesi -->
+        <div id="productList">
+            <h2>Eklenen Ürünler:</h2>
+            <ul id="productDisplay"></ul>
+        </div>
+    </div>
+
+    <script src="../static/js/sell.js"></script>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/css/main.css">
+        <title>Ürün Listesi</title>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="index.html">Ana Sayfa</a>
+            <a href="sell.html">Satış Yap</a>
+            <a href="profile.html">Profil</a>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Kategori Filtreleme -->
+        <section class="filter-section">
+            <label for="categoryFilter">Kategoriye Göre Filtrele:</label>
+            <select id="categoryFilter">
+                <option value="all">Tüm Ürünler</option>
+                <option value="Şapka">Şapka</option>
+                <option value="Ceket">Ceket</option>
+                <option value="Kazak/Tişört">Kazak/Tişört</option>
+                <option value="Pantolon">Pantolon</option>
+                <option value="Ayakkabı">Ayakkabı</option>
+            </select>
+        </section>
+
+        <!-- Ürün Listesi -->
+        <section id="productList" class="product-list">
+            <!-- Ürünler JavaScript ile eklenecek -->
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; DeFo.</p>
+    </footer>
+
+    <script src="../static/js/main.js"></script>
+</body>
+</html>

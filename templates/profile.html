@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profil</title>
+    <link rel="stylesheet" href="../static/css/profile.css">
+</head>
+<body>
+    <nav>
+        <a href="profile.html">Profil</a>
+        <a href="sell.html">Satış Yap</a>
+        <a href="main.html">Ürün Listesi</a>
+        <a href="buy.html">Satın Alma</a>
+    </nav>
+    <div class="profile">
+        <h1>Kullanıcı Profil Sayfası</h1>
+
+        <!-- Kullanıcı bilgilerini girecek alan -->
+        <form id="profileForm">
+            <label for="name">Ad:</label>
+            <input type="text" id="name" placeholder="Adınızı Girin" required><br>
+            
+            <label for="email">Email:</label>
+            <input type="email" id="email" placeholder="Emailinizi Girin" required><br>
+            
+            <label for="phone">Telefon:</label>
+            <input type="text" id="phone" placeholder="Telefon Numaranızı Girin"><br>
+            
+            <label for="profilePhoto">Profil Fotoğrafı:</label>
+            <input type="file" id="profilePhoto" accept="image/*"><br><br>
+            
+            <button type="button" id="saveProfile">Kaydet</button>
+        </form>
+
+        <!-- Kaydedilen bilgilerin görüntüleneceği alan -->
+        <div id="savedProfile">
+            <h2>Kayıtlı Bilgiler:</h2>
+            <p><strong>Ad:</strong> <span id="savedName">[Adınız]</span></p>
+            <p><strong>Email:</strong> <span id="savedEmail">[Email]</span></p>
+            <p><strong>Telefon:</strong> <span id="savedPhone">[Telefon]</span></p>
+            <img id="savedPhoto" src="" alt="Profil Fotoğrafı" style="display:none; width:100px; height:100px;">
+        </div>
+    </div>
+    
+    <!-- Alınan Ürünler -->
+    <div class="purchased-products">
+        <h2>Alınan Ürünler</h2>
+        <div id="purchasedProductsContainer">
+            <!-- Alınan ürünler buy.js tarafından kaydedilir ve burada görüntülenir -->
+        </div>
+    </div>
+
+    <script src="../static/js/profile.js"></script>
+</body>
+</html>

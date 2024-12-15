@@ -1,0 +1,154 @@
+/* Genel Sayfa Stilleri */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    color: #333;
+    line-height: 1.6;
+}
+
+nav {
+    background-color: #333;
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+}
+
+nav a {
+    color: #fff;
+    text-decoration: none;
+    margin: 0 10px;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+
+h1 {
+    text-align: center;
+    margin: 20px 0;
+}
+
+/* Kullanıcı Bilgileri */
+.profile {
+    background: white;
+    margin: 20px auto;
+    padding: 20px;
+    max-width: 800px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.profile form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.profile form label {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.profile form input[type="text"],
+.profile form input[type="email"],
+.profile form input[type="file"] {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.profile form button {
+    background-color: #28a745;
+    color: #fff;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.profile form button:hover {
+    background-color: #218838;
+}
+
+#savedProfile {
+    margin-top: 20px;
+}
+
+#savedProfile p {
+    font-size: 16px;
+    margin: 5px 0;
+}
+
+#savedPhoto {
+    margin-top: 10px;
+}
+
+#savedPhoto img {
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+}
+
+/* Alınan Ürünler */
+.purchased-products {
+    margin-top: 30px;
+}
+
+#purchasedProductsContainer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-top: 10px;
+}
+
+.purchased-product {
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 8px;
+    width: 200px;
+    background: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.purchased-product .product-image img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px;
+}
+
+.purchased-product .product-info h3 {
+    font-size: 18px;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.purchased-product .product-info p {
+    font-size: 14px;
+    color: #555;
+    margin: 5px 0;
+}
+
+/* Satış Geçmişi */
+.purchase-history {
+    margin-top: 30px;
+}
+
+.purchase-history ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.purchase-history ul li {
+    background: #f9f9f9;
+    border: 1px solid #ddd;
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 14px;
+}
